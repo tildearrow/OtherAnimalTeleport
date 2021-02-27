@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import com.coollord22.otheranimalteleport.OATMethods;
 import com.coollord22.otheranimalteleport.OtherAnimalTeleport;
@@ -50,6 +51,7 @@ public class OATListeners implements Listener {
 			}
 		}
 		if(plugin.enabled && !event.isCancelled() && sameGroup) {
+      if (event.getCause()==TeleportCause.UNKNOWN) return;
 			if(event.getPlayer().hasPermission("otheranimalteleport.player.use")) {
 				int radius = plugin.config.radius;
 				boolean toSendError = false;
@@ -62,10 +64,10 @@ public class OATListeners implements Listener {
 									continue;
 								} catch(Exception e) {
 									toSendError = true;
+                  plugin.log.logWarning(e.getStackTrace().toString());
 									continue;
 								}
 							}
-							toSendError = true;
 						}
 						if(ent instanceof Tameable && event.getPlayer().hasPermission("otheranimalteleport.player.teleportpets")) {
 							if(((Tameable) ent).isTamed() && ((Tameable) ent).getOwner().equals(event.getPlayer())) {
@@ -75,11 +77,11 @@ public class OATListeners implements Listener {
 										continue;
 									} catch(Exception e) {
 										toSendError = true;
+                    plugin.log.logWarning(e.getStackTrace().toString());
 										continue;
 									}
 								}
 							}
-							toSendError = true;
 						} 
 					} 
 				}
