@@ -69,9 +69,9 @@ public class OATListeners implements Listener {
 						}
 						if(ent instanceof Tameable && event.getPlayer().hasPermission("otheranimalteleport.player.teleportpets")) {
 							if(((Tameable) ent).isTamed() && ((Tameable) ent).getOwner().equals(event.getPlayer())) {
-								if(ent instanceof Sittable && !((Sittable) ent).isSitting()) {
+								if((ent instanceof Sittable && !((Sittable) ent).isSitting()) || !(ent instanceof Sittable)) {
 									try {
-										OATMethods.teleportLeashedEnt(ent, event.getFrom(), event.getTo(), event.getPlayer(), plugin);
+										OATMethods.teleportEnt(ent, event.getFrom(), event.getTo(), event.getPlayer(), plugin);
 										continue;
 									} catch(Exception e) {
 										toSendError = true;
