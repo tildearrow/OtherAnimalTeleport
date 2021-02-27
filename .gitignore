@@ -10,15 +10,11 @@ doc/*
 # Mac filesystem dust
 .metadata/
 .recommenders/
-
-# Ignore plugin.yml as generated from plugin.yml.template
 /.metadata/
-
 .externalToolBuilders/New_Builder.launch
 .externalToolBuilders/New_Builder (1).launch
 *.jar
 /target/
 
 buildNumber.properties
-src/main/resources/plugin.yml
 dependency-reduced-pom.xml
